@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Праздник вашей мечты</title>
+  <style>
+    :root {
+      --bg-color: #121212;
+      --text-color: #e0e0e0;
+      --accent-color: #bb86fc;
+      --hover-color: #9e7aff;
+      --button-bg: #333333;
+      --cta-color: #6200ee;
+      --card-bg: #1e1e1e;
+      --form-bg: #1e1e1e;
+    }
+    
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+    
+    /* Шапка */
+    header {
+      background-color: rgba(18, 18, 18, 0.9);
+      backdrop-filter: blur(10px);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    }
+    
+    nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: var(--accent-color);
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+    
+    /* Центральное меню */
+    .nav-center {
+      display: flex;
+      gap: 1.5rem;
+      margin: 0 auto;
+    }
+    
+    /* Кнопки справа */
+    .nav-right {
+      display: flex;
+      gap: 1rem;
+      flex-shrink: 0;
+    }
+    
+    /* Стили кнопок */
+    .nav-button {
+      display: inline-block;
+      padding: 0.6rem 1.2rem;
+      background-color: var(--button-bg);
+      color: var(--text-color);
+      text-decoration: none;
+      font-weight: 500;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+      transform: scale(1);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+    
+    .nav-button:hover {
+      transform: scale(1.05);
+      background-color: var(--accent-color);
+      color: var(--bg-color);
+    }
+    
+    /* Главный баннер с видео */
+    .hero {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+    
+    .video-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+    
+    .video-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: -1;
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      padding: 0 2rem;
+    }
+    
+    .hero h1 {
+      font-size: 4.5rem;
+      margin: 0;
+      color: var(--accent-color);
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    }
+    
+    .hero p {
+      font-size: 1.8rem;
+      max-width: 800px;
+      margin: 1.5rem 0 2.5rem;
+    }
+    
+    /* Кнопка CTA */
+    .cta-button {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      background-color: var(--cta-color);
+      color: white;
+      font-size: 1.2rem;
+      font-weight: bold;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    
+    .cta-button:hover {
+      background-color: #7c4dff;
+      transform: scale(1.05);
+    }
+    
+    /* Секции */
+    section {
+      padding: 6rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    /* Общие стили для слайдеров */
+    .slider-container {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      margin: 2rem 0;
+    }
+    
+    .slide-wrapper {
+      display: flex;
+      transition: transform 0.5s ease;
+      padding: 20px 0;
+    }
+    
+    /* Стили для карточек персонажей и шоу */
+    .character-card, .show-card {
+      min-width: 220px;
+      background: var(--card-bg);
+      border-radius: 15px;
+      margin: 0 10px;
+      padding: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      transition: transform 0.3s;
+    }
+    
+    .character-card:hover, .show-card:hover {
+      transform: translateY(-5px);
+    }
+    
+    .character-img, .show-img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 10px;
+      border: 3px solid var(--accent-color);
+    }
+    
+    .character-name, .show-title {
+      font-size: 1.2rem;
+      margin: 10px 0;
+      color: var(--accent-color);
+    }
+    
+    .character-desc, .show-description {
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+    
+    /* Кнопки слайдера */
+    .slider-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      background: var(--accent-color);
+      border: none;
+      border-radius: 50%;
+      color: white;
+      font-size: 1.2rem;
+      cursor: pointer;
+      z-index: 10;
+      transition: all 0.3s;
+    }
+    
+    .slider-btn:hover {
+      background: var(--hover-color);
+      transform: translateY(-50%) scale(1.1);
+    }
+    
+    .slider-btn.left {
+      left: -20px;
+    }
+    
+    .slider-btn.right {
+      right: -20px;
+    }
+    
+    /* Стили для формы консультации */
+    .consultation-form {
+      background: var(--form-bg);
+      border-radius: 15px;
+      padding: 2.5rem;
+      margin: 3rem auto;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+      border: 1px solid #333;
+      max-width: 800px;
+    }
+    
+    .form-title {
+      text-align: center;
+      color: var(--accent-color);
+      margin-bottom: 2rem;
+      font-size: 2rem;
+    }
+    
+    .form-group {
+      margin-bottom: 1.8rem;
+    }
+    
+    .form-label {
+      display: block;
+      margin-bottom: 0.8rem;
+      font-weight: 500;
+      color: var(--accent-color);
+    }
+    
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      padding: 1rem;
+      border: 1px solid #444;
+      border-radius: 8px;
+      background: #2a2a2a;
+      color: var(--text-color);
+      font-family: inherit;
+      font-size: 1rem;
+      transition: all 0.3s;
+    }
+    
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: var(--accent-color);
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(187, 134, 252, 0.3);
+    }
+    
+    .form-textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+    
+    .form-hint {
+      color: #777;
+      font-size: 0.85rem;
+      margin-top: 0.5rem;
+      display: block;
+    }
+    
+    .form-submit {
+      display: block;
+      width: 100%;
+      padding: 1.2rem;
+      background: var(--cta-color);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-top: 2rem;
+    }
+    
+    .form-submit:hover {
+      background: #7c4dff;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(124, 77, 255, 0.4);
+    }
+    
+    /* Плавающие подсказки */
+    .floating-label {
+      position: relative;
+    }
+    
+    .floating-text {
+      position: absolute;
+      left: 15px;
+      top: 15px;
+      color: #777;
+      pointer-events: none;
+      transition: all 0.3s;
+      background: var(--form-bg);
+      padding: 0 5px;
+    }
+    
+    .form-input:focus + .floating-text,
+    .form-input:not(:placeholder-shown) + .floating-text,
+    .form-textarea:focus + .floating-text,
+    .form-textarea:not(:placeholder-shown) + .floating-text {
+      top: -10px;
+      left: 10px;
+      font-size: 0.8rem;
+      color: var(--accent-color);
+    }
+    
+    /* Адаптивность */
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        padding: 1rem;
+      }
+      
+      .nav-center {
+        margin: 1rem 0;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      
+      .hero p {
+        font-size: 1.2rem;
+      }
+      
+      .character-card, .show-card {
+        min-width: 180px;
+      }
+      
+      .character-img, .show-img {
+        width: 120px;
+        height: 120px;
+      }
+      
+      .consultation-form {
+        padding: 1.5rem;
+      }
+      
+      .form-title {
+        font-size: 1.5rem;
+      }
+      
+      /* Мобильная версия видео-фона */
+      .video-background {
+        display: none;
+      }
+      .hero {
+        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                    url('https://images.unsplash.com/photo-1530103862676-de8c9debad1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center/cover;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Шапка с меню -->
+  <header>
+    <nav>
+      <a href="#" class="logo">Детский Праздник</a>
+      
+      <!-- Центральные кнопки -->
+      <div class="nav-center">
+        <a href="#services" class="nav-button">Услуги</a>
+        <a href="#characters" class="nav-button">Персонажи</a>
+        <a href="#show" class="nav-button">Шоу</a>
+        <a href="#reviews" class="nav-button">Отзывы</a>
+      </div>
+      
+      <!-- Кнопки справа -->
+      <div class="nav-right">
+        <a href="#contact" class="nav-button">Связаться</a>
+        <a href="#consultForm" class="nav-button" style="background-color: var(--cta-color); color: white;">Заказать</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Главный баннер с видео -->
+  <section class="hero">
+    <video class="video-background" autoplay muted loop playsinline>
+      <source src="play.MP4" type="video/mp4">
+      <!-- Фолбэк, если видео не поддерживается -->
+      Ваш браузер не поддерживает HTML5 видео.
+    </video>
+    <div class="video-overlay"></div>
+    <div class="hero-content">
+      <h1>Праздник вашей мечты!</h1>
+      <p>Создайте незабываемое событие премиум-уровня для ваших детей</p>
+      <a href="#consultForm" class="cta-button">Заказать сейчас</a>
+    </div>
+  </section>
+
+  <!-- Остальные секции остаются без изменений -->
+  <section id="services">
+    <h2>Наши услуги</h2>
+    <p>Организация детских праздников под ключ</p>
+  </section>
+  
+  <section id="characters">
+    <h2>Персонажи</h2>
+    <p>Любимые герои ваших детей</p>
+    
+    <div class="slider-container">
+      <button class="slider-btn left" id="characters-prev">❮</button>
+      <button class="slider-btn right" id="characters-next">❯</button>
+      
+      <div class="slide-wrapper" id="characters-slider">
+        <!-- Карточки персонажей -->
+        <div class="character-card">
+          <img src="https://i.imgur.com/JYw7ZyX.jpg" alt="Минни Маус" class="character-img">
+          <h3 class="character-name">Минни Маус</h3>
+          <p class="character-desc">Веселая и озорная подруга Микки</p>
+        </div>
+        
+        <div class="character-card">
+          <img src="https://i.imgur.com/LvQxWQk.jpg" alt="Человек-паук" class="character-img">
+          <h3 class="character-name">Человек-паук</h3>
+          <p class="character-desc">Любимый супергерой детей</p>
+        </div>
+        
+        <div class="character-card">
+          <img src="https://i.imgur.com/9ZqQY7Z.jpg" alt="Эльза" class="character-img">
+          <h3 class="character-name">Эльза</h3>
+          <p class="character-desc">Королева снежного королевства</p>
+        </div>
+        
+        <div class="character-card">
+          <img src="https://i.imgur.com/5XwW3bJ.jpg" alt="Бэтмен" class="character-img">
+          <h3 class="character-name">Бэтмен</h3>
+          <p class="character-desc">Темный рыцарь Готэма</p>
+        </div>
+        
+        <div class="character-card">
+          <img src="https://i.imgur.com/8Zwv7RJ.jpg" alt="Принцесса Жасмин" class="character-img">
+          <h3 class="character-name">Принцесса Жасмин</h3>
+          <p class="character-desc">Храбрая принцесса Аграбы</p>
+        </div>
+        
+        <div class="character-card">
+          <img src="https://i.imgur.com/3vQZ7jX.jpg" alt="Щенячий патруль" class="character-img">
+          <h3 class="character-name">Щенячий патруль</h3>
+          <p class="character-desc">Команда спасателей</p>
+        </div>
+        
+        <div class="character-card">
+          <img src="https://i.imgur.com/mW4W6hQ.jpg" alt="Фиксики" class="character-img">
+          <h3 class="character-name">Фиксики</h3>
+          <p class="character-desc">Маленькие помощники</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Форма консультации -->
+    <div class="consultation-form" id="consultForm">
+      <h3 class="form-title">Получить консультацию</h3>
+      <form id="consultForm" action="https://your-backend-endpoint.com/submit" method="POST">
+        <div class="form-group">
+          <label for="name" class="form-label">Ваше имя</label>
+          <div class="floating-label">
+            <input type="text" id="name" name="name" class="form-input" placeholder=" " required
+                   pattern="[А-Яа-яЁёA-Za-z\s]{2,50}" title="Только буквы (2-50 символов)">
+            <span class="floating-text">Иван Иванов</span>
+          </div>
+          <span class="form-hint">Только буквы (2-50 символов)</span>
+        </div>
+        
+        <div class="form-group">
+          <label for="phone" class="form-label">Телефон</label>
+          <div class="floating-label">
+            <input type="tel" id="phone" name="phone" class="form-input" placeholder=" " required
+                   pattern="[\+]\d{1}\s[\(]\d{3}[\)]\s\d{3}[\-]\d{2}[\-]\d{2}" 
+                   title="Формат: +7 (XXX) XXX-XX-XX">
+            <span class="floating-text">+7 (XXX) XXX-XX-XX</span>
+          </div>
+          <span class="form-hint">Формат: +7 (XXX) XXX-XX-XX</span>
+        </div>
+        
+        <div class="form-group">
+          <label for="birthdate" class="form-label">Дата рождения ребенка</label>
+          <input type="date" id="birthdate" name="birthdate" class="form-input" required
+                 min="2010-01-01" max="2023-12-31">
+        </div>
+        
+        <div class="form-group">
+          <label for="service" class="form-label">Выберите услугу</label>
+          <select id="service" name="service" class="form-select" required>
+            <option value="" disabled selected>Выберите вариант</option>
+            <option value="costume_rental">Аренда костюмов</option>
+            <option value="show_program">Шоу программа</option>
+            <option value="master_class">Мастер класс</option>
+            <option value="event_organization">Организация праздника</option>
+            <option value="basic_package">Пакет Базовый</option>
+            <option value="standard_package">Пакет Стандарт</option>
+            <option value="premium_package">Пакет Премиум</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="message" class="form-label">Расскажите о вашем мероприятии</label>
+          <div class="floating-label">
+            <textarea id="message" name="message" class="form-textarea" placeholder=" " required
+                      minlength="20" maxlength="500"></textarea>
+            <span class="floating-text">Опишите дату, место, количество детей и пожелания</span>
+          </div>
+          <span class="form-hint">Минимум 20 символов</span>
+        </div>
+        
+        <input type="hidden" name="csrf_token" id="csrf_token" value="">
+        
+        <button type="submit" class="form-submit">Получить консультацию</button>
+      </form>
+    </div>
+  </section>
+  
+  <!-- Секция с шоу-программами -->
+  <section id="show">
+    <h2>Шоу-программы</h2>
+    <p>Уникальные представления для вашего праздника</p>
+
+    <div class="slider-container">
+      <button class="slider-btn left" id="shows-prev">❮</button>
+      <button class="slider-btn right" id="shows-next">❯</button>
+      
+      <div class="slide-wrapper" id="shows-slider">
+        <!-- Химическое Шоу -->
+        <div class="show-card">
+          <img src="chemical.jpg" alt="Химическое шоу" class="show-img">
+          <h3 class="show-title">Химическое Шоу</h3>
+          <p class="show-description">
+            Увлекательные эксперименты с жидким азотом и химическими реакциями
+          </p>
+          <button class="album-btn">Фотоальбом</button>
+          <div class="album-photos" style="display:none;">
+            <img src="album/chemical1.jpg" alt="Фото 1" style="width:80px; margin:5px;">
+            <img src="album/chemical2.jpg" alt="Фото 2" style="width:80px; margin:5px;">
+          </div>
+        </div>
+        
+        <!-- Бумажное Шоу -->
+        <div class="show-card">
+          <img src="paper.jpg" alt="Бумажное шоу" class="show-img">
+          <h3 class="show-title">Бумажное Шоу</h3>
+          <p class="show-description">
+            Танцы, музыка и море бумаги для незабываемого веселья
+          </p>
+          <button class="album-btn">Фотоальбом</button>
+          <div class="album-photos" style="display:none;">
+            <img src="album/paper1.jpg" alt="Фото 1" style="width:80px; margin:5px;">
+            <img src="album/paper2.jpg" alt="Фото 2" style="width:80px; margin:5px;">
+          </div>
+        </div>
+        
+        <!-- Крейзи Бокс -->
+        <div class="show-card">
+          <img src="ВАШИ_ФОТО/crazy-box.jpg" alt="Крейзи Бокс" class="show-img">
+          <h3 class="show-title">Крейзи Бокс</h3>
+          <p class="show-description">
+            Загадки, сюрпризы и испытания для сообразительных
+          </p>
+          <button class="album-btn">Фотоальбом</button>
+          <div class="album-photos" style="display:none;">
+            <img src="album/crazy1.jpg" alt="Фото 1" style="width:80px; margin:5px;">
+            <img src="album/crazy2.jpg" alt="Фото 2" style="width:80px; margin:5px;">
+          </div>
+        </div>
+        
+        <!-- ТЕСЛА ШОУ -->
+        <div class="show-card">
+          <img src="ВАШИ_ФОТО/tesla-show.jpg" alt="ТЕСЛА ШОУ" class="show-img">
+          <h3 class="show-title">ТЕСЛА ШОУ</h3>
+          <p class="show-description">
+            Завораживающие эксперименты с электричеством
+          </p>
+          <button class="album-btn">Фотоальбом</button>
+          <div class="album-photos" style="display:none;">
+            <img src="album/tesla1.jpg" alt="Фото 1" style="width:80px; margin:5px;">
+            <img src="album/tesla2.jpg" alt="Фото 2" style="width:80px; margin:5px;">
+          </div>
+        </div>
+        
+        <!-- Шоу Мыльных Пузырей -->
+        <div class="show-card">
+          <img src="ВАШИ_ФОТО/bubbles-show.jpg" alt="Шоу Пузырей" class="show-img">
+          <h3 class="show-title">Шоу Пузырей</h3>
+          <p class="show-description">
+            Волшебный мир огромных мыльных пузырей
+          </p>
+          <button class="album-btn">Фотоальбом</button>
+          <div class="album-photos" style="display:none;">
+            <img src="album/bubbles1.jpg" alt="Фото 1" style="width:80px; margin:5px;">
+            <img src="album/bubbles2.jpg" alt="Фото 2" style="width:80px; margin:5px;">
+          </div>
+        </div>
+        
+        <!-- Пенная вечеринка -->
+        <div class="show-card">
+          <img src="ВАШИ_ФОТО/foam-party.jpg" alt="Пенная вечеринка" class="show-img">
+          <h3 class="show-title">Пенная вечеринка</h3>
+          <p class="show-description">
+            Море пены, танцев и веселья
+          </p>
+          <button class="album-btn">Фотоальбом</button>
+          <div class="album-photos" style="display:none;">
+            <img src="album/foam1.jpg" alt="Фото 1" style="width:80px; margin:5px;">
+            <img src="album/foam2.jpg" alt="Фото 2" style="width:80px; margin:5px;">
+          </div>
+        </div>
+        
+        <!-- МАФИЯ -->
+        <div class="show-card">
+          <img src="ВАШИ_ФОТО/mafia.jpg" alt="МАФИЯ" class="show-img">
+          <h3 class="show-title">МАФИЯ</h3>
+          <p class="show-description">
+            Интеллектуальная игра с интригами и обманом
+          </p>
+          <button class="album-btn">Фотоальбом</button>
+          <div class="album-photos" style="display:none;">
+            <img src="album/mafia1.jpg" alt="Фото 1" style="width:80px; margin:5px;">
+            <img src="album/mafia2.jpg" alt="Фото 2" style="width:80px; margin:5px;">
+          </div>
+        </div>
+        
+        <!-- Шоу магии -->
+        <div class="show-card">
+          <img src=".jpg" alt="Шоу Магии" class="show-img">
+          <h3 class="show-title">Шоу Магии</h3>
+          <p class="show-description">
+            Фокусы и иллюзии для детей и взрослых
+          </p>
+          <button class="album-btn">Фотоальбом</button>
+          <div class="album-photos" style="display:none;">
+            <img src="album/magic1.jpg" alt="Фото 1" style="width:80px; margin:5px;">
+            <img src="album/magic2.jpg" alt="Фото 2" style="width:80px; margin:5px;">
+          </div>
+        </div>
+        
+        <!-- Аквагрим -->
+        <div class="show-card">
+          <img src="ВАШИ_ФОТО/facepaint.jpg" alt="Аквагрим" class="show-img">
+          <h3 class="show-title">Аквагрим</h3>
+          <p class="show-description">
+            Превращение детей в любимых персонажей
+          </p>
+          <button class="album-btn">Фотоальбом</button>
+          <div class="album-photos" style="display:none;">
+            <img src="album/facepaint1.jpg" alt="Фото 1" style="width:80px; margin:5px;">
+            <img src="album/facepaint2.jpg" alt="Фото 2" style="width:80px; margin:5px;">
+          </div>
+        </div>
+        
+        <!-- Слайм шоу -->
+        <div class="show-card">
+          <img src="ВАШИ_ФОТО/slime-show.jpg" alt="Слайм шоу" class="show-img">
+          <h3 class="show-title">Слайм шоу</h3>
+          <p class="show-description">
+            Мастер-класс по созданию слаймов
+          </p>
+          <button class="album-btn">Фотоальбом</button>
+          <div class="album-photos" style="display:none;">
+            <img src="album/slime1.jpg" alt="Фото 1" style="width:80px; margin:5px;">
+            <img src="album/slime2.jpg" alt="Фото 2" style="width:80px; margin:5px;">
+          </div>
+        </div>
+        
+        <!-- ДЕКОР БЛОКНОТОВ -->
+        <div class="show-card">
+          <img src="ВАШИ_ФОТО/notebook.jpg" alt="Декор блокнотов" class="show-img">
+          <h3 class="show-title">Декор Блокнотов</h3>
+          <p class="show-description">
+            Творческий мастер-класс для детей
+          </p>
+          <button class="album-btn">Фотоальбом</button>
+          <div class="album-photos" style="display:none;">
+            <img src="album/notebook1.jpg" alt="Фото 1" style="width:80px; margin:5px;">
+            <img src="album/notebook2.jpg" alt="Фото 2" style="width:80px; margin:5px;">
+          </div>
+        </div>
+        
+        <!-- Крио шоу с мороженным -->
+        <div class="show-card">
+          <img src="ВАШИ_ФОТО/cryo-show.jpg" alt="Крио шоу" class="show-img">
+          <h3 class="show-title">Крио шоу</h3>
+          <p class="show-description">
+            Приготовление мороженого с жидким азотом
+          </p>
+          <button class="album-btn">Фотоальбом</button>
+          <div class="album-photos" style="display:none;">
+            <img src="album/cryo1.jpg" alt="Фото 1" style="width:80px; margin:5px;">
+            <img src="album/cryo2.jpg" alt="Фото 2" style="width:80px; margin:5px;">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section id="reviews">
+    <h2>Отзывы</h2>
+    <p>Что говорят наши клиенты</p>
+  </section>
+  
+  <section id="contact">
+    <h2>Контакты</h2>
+    <p>Как с нами связаться</p>
+  </section>
+
+  <script>
+    // Плавная прокрутка
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+    
+    // Слайдер персонажей
+    const charactersSlider = document.getElementById('characters-slider');
+    const charactersPrev = document.getElementById('characters-prev');
+    const charactersNext = document.getElementById('characters-next');
+    const characterCards = document.querySelectorAll('.character-card');
+    const characterCardWidth = characterCards[0].offsetWidth + 20;
+    let charactersPosition = 0;
+    const charactersMaxPosition = -(characterCardWidth * (characterCards.length - 3));
+    
+    charactersNext.addEventListener('click', () => {
+      if (charactersPosition > charactersMaxPosition) {
+        charactersPosition -= characterCardWidth;
+        charactersSlider.style.transform = `translateX(${charactersPosition}px)`;
+      }
+    });
+    
+    charactersPrev.addEventListener('click', () => {
+      if (charactersPosition < 0) {
+        charactersPosition += characterCardWidth;
+        charactersSlider.style.transform = `translateX(${charactersPosition}px)`;
+      }
+    });
+    
+    // Слайдер шоу-программ
+    const showsSlider = document.getElementById('shows-slider');
+    const showsPrev = document.getElementById('shows-prev');
+    const showsNext = document.getElementById('shows-next');
+    const showCards = document.querySelectorAll('.show-card');
+    const showCardWidth = showCards[0].offsetWidth + 20;
+    let showsPosition = 0;
+    const showsMaxPosition = -(showCardWidth * (showCards.length - 3));
+    
+    showsNext.addEventListener('click', () => {
+      if (showsPosition > showsMaxPosition) {
+        showsPosition -= showCardWidth;
+        showsSlider.style.transform = `translateX(${showsPosition}px)`;
+      }
+    });
+    
+    showsPrev.addEventListener('click', () => {
+      if (showsPosition < 0) {
+        showsPosition += showCardWidth;
+        showsSlider.style.transform = `translateX(${showsPosition}px)`;
+      }
+    });
+    
+    // Защита формы
+    document.getElementById('consultForm').addEventListener('submit', function(e) {
+      // Очистка введенных данных от потенциально опасных символов
+      const inputs = this.querySelectorAll('input, textarea');
+      inputs.forEach(input => {
+        input.value = input.value.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+      });
+      
+      // Генерация CSRF-токена (в реальном проекте должен приходить с сервера)
+      document.getElementById('csrf_token').value = Math.random().toString(36).substring(2);
+      
+      // Здесь должна быть AJAX-отправка на сервер
+      // e.preventDefault(); // Раскомментировать для реального использования
+      // alert('Форма отправлена!'); // Заглушка для демонстрации
+    });
+
+    // Валидация телефона
+    document.getElementById('phone').addEventListener('input', function(e) {
+      this.value = this.value.replace(/[^\d\+\(\)\s-]/g, '');
+    });
+
+    // Кнопки "Фотоальбом" для шоу
+    document.querySelectorAll('.album-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        const album = this.nextElementSibling;
+        if (album.style.display === 'none' || album.style.display === '') {
+          album.style.display = 'block';
+        } else {
+          album.style.display = 'none';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
