@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Праздник вашей мечты</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="#" class="logo">R.Saifullin</a>
+      <div class="nav-center">
+        <a href="#about" class="nav-button">О нас</a>
+        <a href="#packages" class="nav-button">Пакеты</a>
+        <a href="#cases" class="nav-button">Кейсы</a>
+        <a href="#reviews" class="nav-button">Отзывы</a>
+        <a href="#products" class="nav-button">Доп. товары</a>
+        <a href="#contact" class="nav-button">Контакты</a>
+      </div>
+      <div class="nav-right">
+        <a href="#consultForm" class="nav-button cta">Заказать</a>
+      </div>
+      <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#about" class="nav-button">О нас</a>
+      <a href="#packages" class="nav-button">Пакеты</a>
+      <a href="#cases" class="nav-button">Кейсы</a>
+      <a href="#reviews" class="nav-button">Отзывы</a>
+      <a href="#products" class="nav-button">Доп. товары</a>
+      <a href="#contact" class="nav-button">Контакты</a>
+      <a href="#consultForm" class="nav-button cta">Заказать</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="video-background">
+      <video autoplay muted loop playsinline preload="auto" poster="images/hero-fallback.jpg">
+        <source src="Rasul.webm" type="video/webm">
+        <source src="Rasul.mp4" type="video/mp4">
+      </video>
+      <div class="video-overlay"></div>
+    </div>
+    <div class="hero-content">
+      <h1>Праздник вашей мечты!</h1>
+      <p>Создайте незабываемое событие премиум-уровня для ваших детей</p>
+      <a href="#consultForm" class="cta-button">Заказать сейчас</a>
+    </div>
+  </section>
+
+  <section id="about" class="about-section">
+    <div class="section-inner">
+      <h2>Кто мы такие</h2>
+      <p class="subtitle">Профессиональные организаторы детских праздников</p>
+      <div class="about-content">
+        <div class="about-text">
+          <p>Мы - команда профессиональных аниматоров и организаторов детских праздников с более чем 10-летним опытом работы.</p>
+          <p>Наша миссия - создавать незабываемые моменты радости для детей и их родителей, превращая каждый праздник в волшебное приключение.</p>
+          <div class="about-stats">
+            <div class="stat-item">
+              <div class="stat-number">500+</div>
+              <div class="stat-label">мероприятий</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">50+</div>
+              <div class="stat-label">персонажей</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">100%</div>
+              <div class="stat-label">довольных клиентов</div>
+            </div>
+          </div>
+        </div>
+        <div class="about-image">
+          <img src="images/about-team.jpg" alt="Наша команда" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="packages">
+    <div class="section-inner">
+      <h2>Пакеты услуг</h2>
+      <p class="subtitle">Выберите подходящий вариант для вашего праздника</p>
+      <div class="packages-container">
+        <div class="package-card" data-package="basic">
+          <h3 class="package-title">Базовый</h3>
+          <div class="package-price">10 000 ₽</div>
+          <ul class="package-features">
+            <li>1 аниматор на 2 часа</li>
+            <li>1 персонаж на выбор</li>
+            <li>1 мастер-класс</li>
+            <li>Фотосессия</li>
+          </ul>
+          <button class="package-button select-package">Выбрать пакет</button>
+        </div>
+        <div class="package-card" data-package="standard">
+          <h3 class="package-title">Стандарт</h3>
+          <div class="package-price">35 000 ₽</div>
+          <ul class="package-features">
+            <li>2 аниматора на 2 часа</li>
+            <li>2 персонажа на выбор</li>
+            <li>1 шоу-программа</li>
+            <li>Мини-подарки гостям</li>
+          </ul>
+          <button class="package-button select-package">Выбрать пакет</button>
+        </div>
+        <div class="package-card premium" data-package="premium">
+          <h3 class="package-title">Премиум</h3>
+          <div class="package-price">55 000 ₽</div>
+          <ul class="package-features">
+            <li>2 аниматора на 3 часа</li>
+            <li>3 персонажа на выбор</li>
+            <li>2 шоу-программы</li>
+            <li>1 мастер-класс</li>
+            <li>Пиньята</li>
+          </ul>
+          <button class="package-button select-package">Выбрать пакет</button>
+        </div>
+        <div class="package-card custom" data-package="custom">
+          <h3 class="package-title">Кастомный</h3>
+          <div class="package-price">От 15 000 ₽</div>
+          <ul class="package-features">
+            <li>Индивидуальный подбор услуг</li>
+            <li>Любое количество персонажей</li>
+            <li>Любые шоу-программы</li>
+            <li>Мастер-классы на выбор</li>
+          </ul>
+          <button class="package-button select-package">Собрать свой пакет</button>
+        </div>
+      </div>
+
+      <div id="package-selection" class="hidden">
+        <div class="selected-package-info">
+          <h3>Выбран пакет: <span id="selected-package-name">Базовый</span></h3>
+          <div class="total-price">Итого: <span id="total-price">10 000</span> ₽</div>
+        </div>
+        <div class="selection-section">
+          <h3 class="selection-section-title">Персонажи <span class="selected-count" id="characters-count">0</span>/<span id="max-characters">1</span></h3>
+          <div class="selection-navigation">
+            <button class="carousel-nav prev" id="characters-prev">❮</button>
+            <div class="character-carousel-container">
+              <div class="character-carousel" id="characters-slider"></div>
+            </div>
+            <button class="carousel-nav next" id="characters-next">❯</button>
+          </div>
+        </div>
+        <div class="selection-section">
+          <h3 class="selection-section-title">Шоу-программы <span class="selected-count" id="shows-count">0</span>/<span id="max-shows">0</span></h3>
+          <div class="selection-navigation">
+            <button class="carousel-nav prev" id="shows-prev">❮</button>
+            <div class="show-carousel-container">
+              <div class="show-carousel" id="shows-slider"></div>
+            </div>
+            <button class="carousel-nav next" id="shows-next">❯</button>
+          </div>
+        </div>
+        <div class="selection-section">
+          <h3 class="selection-section-title">Мастер-классы <span class="selected-count" id="master-count">0</span>/<span id="max-master">1</span></h3>
+          <div class="selection-navigation">
+            <button class="carousel-nav prev" id="master-prev">❮</button>
+            <div class="master-carousel-container">
+              <div class="master-carousel" id="master-slider"></div>
+            </div>
+            <button class="carousel-nav next" id="master-next">❯</button>
+          </div>
+        </div>
+        <div class="selected-services-preview" id="selected-services"></div>
+        <div class="order-actions">
+          <button class="cta-button" id="order-btn">Оставить заявку</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="cases">
+    <div class="section-inner">
+      <h2>Наши кейсы</h2>
+      <p class="subtitle">Реализованные мероприятия и праздники</p>
+      <div class="cases-grid">
+        <div class="case-card">
+          <div class="case-image-container">
+            <img src="images/case1.jpg" alt="Детский день рождения" loading="lazy">
+            <div class="case-overlay">
+              <button class="view-case-btn">Подробнее</button>
+            </div>
+          </div>
+          <div class="case-info">
+            <h3>День рождения Алисы</h3>
+            <p>Тематическая вечеринка с Эльзой и шоу мыльных пузырей</p>
+          </div>
+        </div>
+        <div class="case-card">
+          <div class="case-image-container">
+            <img src="images/case2.jpg" alt="Выпускной в детском саду" loading="lazy">
+            <div class="case-overlay">
+              <button class="view-case-btn">Подробнее</button>
+            </div>
+          </div>
+          <div class="case-info">
+            <h3>Выпускной в детском саду</h3>
+            <p>Организация праздника для 25 детей с аниматорами</p>
+          </div>
+        </div>
+        <div class="case-card">
+          <div class="case-image-container">
+            <img src="images/case3.jpg" alt="Новый год" loading="lazy">
+            <div class="case-overlay">
+              <button class="view-case-btn">Подробнее</button>
+            </div>
+          </div>
+          <div class="case-info">
+            <h3>Корпоративный Новый год</h3>
+            <p>Праздник для детей сотрудников компании</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="reviews">
+    <div class="section-inner">
+      <h2>Отзывы</h2>
+      <p class="subtitle">Что говорят наши клиенты</p>
+      <div class="reviews-slider">
+        <div class="review-card">
+          <div class="review-header">
+            <div class="review-author">Марина К.</div>
+            <div class="review-rating">★★★★★</div>
+          </div>
+          <div class="review-text">
+            "Организация дня рождения дочери на высшем уровне! Дети в восторге, аниматоры профессиональные, все прошло без сучка и задоринки."
+          </div>
+          <div class="review-date">15.05.2023</div>
+        </div>
+        <div class="review-card">
+          <div class="review-header">
+            <div class="review-author">Александр П.</div>
+            <div class="review-rating">★★★★★</div>
+          </div>
+          <div class="review-text">
+            "Заказывали шоу мыльных пузырей на выпускной в садике. Все родители и дети остались в полном восторге!"
+          </div>
+          <div class="review-date">28.06.2023</div>
+        </div>
+        <div class="review-card">
+          <div class="review-header">
+            <div class="review-author">Ольга С.</div>
+            <div class="review-rating">★★★★★</div>
+          </div>
+          <div class="review-text">
+            "Прекрасная организация детского праздника! Все было на высшем уровне, дети в восторге!"
+          </div>
+          <div class="review-date">10.07.2023</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="products">
+    <div class="section-inner">
+      <h2>Дополнительные товары</h2>
+      <p class="subtitle">Что еще может украсить ваш праздник</p>
+      <div class="products-grid">
+        <div class="product-card">
+          <div class="product-image-container">
+            <img src="images/pinata1.jpg" alt="Пиньята" loading="lazy">
+            <div class="product-overlay">
+              <button class="view-product-btn">Подробнее</button>
+            </div>
+          </div>
+          <h3>Пиньяты</h3>
+          <p>Яркие пиньяты с конфетами и подарками</p>
+          <div class="product-price">от 1 500 ₽</div>
+        </div>
+        <div class="product-card">
+          <div class="product-image-container">
+            <img src="images/decor.jpg" alt="Оформление шарами" loading="lazy">
+            <div class="product-overlay">
+              <button class="view-product-btn">Подробнее</button>
+            </div>
+          </div>
+          <h3>Оформление шарами</h3>
+          <p>Тематическое оформление праздника</p>
+          <div class="product-price">от 3 000 ₽</div>
+        </div>
+        <div class="product-card">
+          <div class="product-image-container">
+            <img src="images/photo.jpg" alt="Фотосессия" loading="lazy">
+            <div class="product-overlay">
+              <button class="view-product-btn">Подробнее</button>
+            </div>
+          </div>
+          <h3>Фотосессия</h3>
+          <p>Профессиональная съемка праздника</p>
+          <div class="product-price">5 000 ₽</div>
+        </div>
+      </div>
+      
+      <div class="product-checkbox-container">
+        <label class="product-checkbox">
+          <input type="checkbox" class="additional-service" data-type="cake" data-price="3000">
+          <span class="checkmark"></span>
+          Тортик (+3000₽)
+        </label>
+        <label class="product-checkbox">
+          <input type="checkbox" class="additional-service" data-type="photographer" data-price="5000">
+          <span class="checkmark"></span>
+          Фотограф (+5000₽)
+        </label>
+        <label class="product-checkbox">
+          <input type="checkbox" class="additional-service" data-type="pinata" data-price="1500">
+          <span class="checkmark"></span>
+          Пиньята (+1500₽)
+        </label>
+      </div>
+    </div>
+  </section>
+
+  <section id="consultForm">
+    <div class="section-inner">
+      <div class="consultation-form">
+        <h3 class="form-title">Оставить заявку</h3>
+        <form id="consultationForm" action="#" method="POST">
+          <div class="selected-services" id="form-selected-services"></div>
+          <div class="form-group">
+            <label for="name" class="form-label">Ваше имя</label>
+            <input type="text" id="name" name="name" class="form-input" placeholder="Иван Иванов" required>
+          </div>
+          <div class="form-group">
+            <label for="phone" class="form-label">Телефон</label>
+            <input type="tel" id="phone" name="phone" class="form-input" placeholder="+7 (XXX) XXX-XX-XX" required>
+          </div>
+          <div class="form-group">
+            <label for="eventDate" class="form-label">Дата мероприятия</label>
+            <input type="date" id="eventDate" name="eventDate" class="form-input" required>
+          </div>
+          <div class="form-group">
+            <label for="childBirthday" class="form-label">Дата рождения ребенка</label>
+            <input type="date" id="childBirthday" name="childBirthday" class="form-input" required>
+          </div>
+          <button type="submit" class="form-submit">Отправить заявку</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="section-inner">
+      <h2>Контакты</h2>
+      <p class="subtitle">Как с нами связаться</p>
+      <div class="contact-vertical-container">
+        <div class="contact-column">
+          <h3>Контакты</h3>
+          <ul class="contact-list">
+            <li><i class="fas fa-phone-alt contact-icon"></i> <a href="tel:+79000000000" class="contact-link">+7 (900) 000-00-00</a></li>
+            <li><i class="fas fa-envelope contact-icon"></i> <a href="mailto:info@example.com" class="contact-link">info@example.com</a></li>
+            <li><i class="fas fa-map-marker-alt contact-icon"></i> г. Москва</li>
+          </ul>
+        </div>
+        <div class="contact-column">
+          <h3>Часы работы</h3>
+          <ul class="contact-list">
+            <li><i class="far fa-clock contact-icon"></i> Пн-Пт: 9:00 - 20:00</li>
+            <li><i class="far fa-clock contact-icon"></i> Сб-Вс: 10:00 - 18:00</li>
+          </ul>
+        </div>
+      </div>
+      <div class="social-links">
+        <a href="#" class="social-link"><i class="fab fa-vk"></i></a>
+        <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <div class="modal-overlay" id="case-modal">
+    <div class="modal-content">
+      <button class="close-modal">&times;</button>
+      <div class="modal-body" id="case-modal-content"></div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="video-modal">
+    <div class="modal-content video-modal">
+      <button class="close-modal">&times;</button>
+      <div class="modal-body">
+        <video controls id="modal-video">
+          Ваш браузер не поддерживает видео.
+        </video>
+        <div id="video-modal-title" class="video-title"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
